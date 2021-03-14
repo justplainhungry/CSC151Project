@@ -5,7 +5,7 @@
 
 public class Policy
 {  
-   // Set up class fields. 
+   // Set up class fields.
    private String policyNumber;
    private String providerName;
    private String holderFirstName;
@@ -16,7 +16,7 @@ public class Policy
    private double weightLbs;
             
 
-   // Set up no-arg constructor. 
+   // Set up no-arg constructor.
    public Policy()
    {
       policyNumber = "";
