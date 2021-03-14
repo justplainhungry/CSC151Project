@@ -1,11 +1,11 @@
 /**
-   Project part 1. 
+   Project part 2. 
    This Policy class models an insurance policy for a single person.
 */
 
 public class Policy
 {  
-   // Set up class fields. check
+   // Set up class fields. 
    private String policyNumber;
    private String providerName;
    private String holderFirstName;
@@ -16,7 +16,7 @@ public class Policy
    private double weightLbs;
             
 
-   // Set up no-arg constructor. check
+   // Set up no-arg constructor. 
    public Policy()
    {
       policyNumber = "";
@@ -30,7 +30,7 @@ public class Policy
 
    }
    
-   // Set up constructor. check
+   // Set up constructor. 
    public Policy(String pn, String provN, String hfn, String hln, String smk, double a, double hi, double wl)
    {
       policyNumber = pn;
