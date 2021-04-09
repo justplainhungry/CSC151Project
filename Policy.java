@@ -1,207 +1,65 @@
 /**
-   Project part 2. 
-   This Policy class models an insurance policy for a single person.
+   Project part 3. 
+   This Policy class models an insurance policy for a single person. (aggregate class)
 */
 
 public class Policy
 {  
-   // Set up class fields.
-   private String policyNumber;
-   private String providerName;
-   private String holderFirstName;
-   private String holderLastName;
-   private String smokerStr;  
-   private double age;
-   private double heightInch;
-   private double weightLbs;
-            
-
-   // Set up no-arg constructor.
-   public Policy()
-   {
-      policyNumber = "";
-      providerName = "";
-      holderFirstName = "";
-      holderLastName = "";
-      smokerStr = "";
-      age = 0.0;
-      heightInch = 0.0;
-      weightLbs = 0.0;                     
-
-   }
-   
-   // Set up constructor. 
-   public Policy(String pn, String provN, String hfn, String hln, String smk, double a, double hi, double wl)
-   {
-      policyNumber = pn;
-      providerName = provN;
-      holderFirstName = hfn;
-      holderLastName = hln;
-      smokerStr = smk;
-      age = a;
-      heightInch = hi;
-      weightLbs = wl;
-   }
-      
-   // Create setters.
+   private PolicyHolder holder;
+   private static int instanceCount;
    
    /**
-      This method sets the holder's policy number.
+      Constructor to increment that amount of instances of this class that are created.
    */
-   public void setPolicyNumber(String pn)
+   public Policy(PolicyHolder hold)
    {
-      policyNumber = pn;
+      holder = new PolicyHolder(hold);
+      instanceCount++;
    }
    
    /**
-      This method sets the holder's provider name.
+      Returns the amount of instances of the class.
+      @return instanceCount The number of instances of this class has been created
    */
-   public void setProviderName(String provN)
+   public int getInstanceCountPolicy()
    {
-      providerName = provN;
+      return instanceCount;
    }
    
    /**
-      This method sets the policy holder's first name.
+      Returns the policy holder's information.
+      @return holder Policy Holder's information
    */
-   public void setHolderFirstName(String hfn)
+   public PolicyHolder information()
    {
-      holderFirstName = hfn;
+      return new PolicyHolder(holder);
    }
-   
-   /**
-      This method sets the policy holder's last name.
-   */
-   public void setHolderLastName(String hln)
-   {
-      holderLastName = hln;
-   }
-   
-   /**
-      Thie method sets the policy holder's age.   
-   */
-   public void setAge(double a)
-   {
-      age = a;
-   }
-   
-   /**
-      This method sets the policy holder's smoking status.
-   */
-   public void setSmokeStr(String sm)
-   {
-      smokerStr = sm;
-   }
-   
-   /**
-      This method sets the policy holder's height.
-   */
-   public void setHeightInch(double hi)
-   {
-      heightInch = hi;
-   }
-   
-   /**
-      This method sets the policy holder's weight.
-   */
-   public void setWeightLbs(double wl)
-   {
-      weightLbs = wl;
-   }
-   
-   // Create getters.
-   
-   /**
-      This method gets the policy holder's policy number.
-      @return policyNumber Holds the policy number.
-   */
-   public String getPolicyNumber()
-   {
-      return policyNumber;
-   }
-   
-   /**
-      This method gets the insurance provider's name
-      @return providerName Holds the provider's name.
-   */
-   public String getProviderName()
-   {
-      return providerName;
-   }
-   
-   /**
-      This method gets the policy holder's first name.
-      @return holderFirstName Holds the holder's first name.
-   */
-   public String getHolderFirstName()
-   {
-      return holderFirstName;
-   }
-   
-   /**
-      This method gets the policy holder's last name.
-      @return holderLastName Policy holder's lastName.
-   */
-   public String getHolderLastName()
-   {
-      return holderLastName;
-   }
-   
-   /**
-      This method gets the policy holder's age.
-      @return age Policy holder's age.
-   */
-   public double getAge()
-   {
-      return age;
-   }
-   
-   /**
-      This method returns the smoking status as a string.
-      @return smokerStr Policy holder's smoking status.
-   */
-   public String getSmokeStr()
-   {
-      return smokerStr;
-   }
-   
-   /**
-      This method returns the policy holder's height in inches.
-      @return heightInch Policy holder's height in inches.
-   */
-   public double getHeightInch()
-   {
-      return heightInch;
-   }
-   
-   /**
-      This method gets the policy holder's weight in pounds.
-      @return weightLbs Policy holder's weight in pounds.
-   */
-   public double getWeightLbs()
-   {
-      return weightLbs;
-   }
-   
-   
    
    /**
       This method calculates and returns the policy holder's BMI.
       @return BMI Policy holder's BMI.
    */
-   public double calculateHolderBMI()  
+   public static double calculateHolderBMI()  // shouldNT be a static method
    {
+      PolicyHolder hold = new PolicyHolder();
       final double WEIGHT_MULTIPLIER = 703.0; 
       
-      return (weightLbs * WEIGHT_MULTIPLIER)/(heightInch * heightInch); 
+      return (hold.getWeight() * WEIGHT_MULTIPLIER)/(hold.getHeight() * hold.getHeight()); 
+      // how am I supposed to import weight and height from PolicyHolder?
+      // answer: make both this method, and both return methods in the PolicyHolder class static methods
+      // 2nd answer: create get methods for all types needing to be used for this method,
+      // and the calculatePolicyPrice method.
+      //
    }
    
    /**
       This method calculates the holder's policy price and returns it.
       @return price the policy's price for the holder.
    */
-   public double calculatePolicyPrice() 
+   public double calculatePolicyPrice() //shouldNT be a static method
    {  
+      PolicyHolder hold = new PolicyHolder();
+      
       final double BASE_FEE = 600.0;                    
       final double AGE_FEE = 75.0;                    
       final double SMOKER_FEE = 100.0;
@@ -212,12 +70,12 @@ public class Policy
       
       double price = BASE_FEE;                                  
       
-      if (age >= AGE_LIMIT) 
-      {
+      if (hold.getAge() >= AGE_LIMIT) // need some way to import the smoking status and age
+      {                     // Solution: make methods to reference in PolicyHolder.
          price += AGE_FEE; 
       }                         
                                
-      if (smokerStr.equalsIgnoreCase("smoker"));
+      if (hold.getSmokeStat().equalsIgnoreCase("smoker"));
       {
          price += SMOKER_FEE;  // for some reason my code keeps adding $100 smoking fee, even when non-smoker is chosen. 
       }
@@ -229,5 +87,16 @@ public class Policy
            
       return price;   
    } 
+   
+   /**
+      This method converts the returning code to a String.
+      @return str Returning data in String.
+   */
+   public String toString()
+   {
+      String str = "Policyholder's BMI: " + calculateHolderBMI() +
+                   "Policy Price:  " + calculatePolicyPrice();
+      return str;
+   }
 }
 
