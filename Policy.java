@@ -5,6 +5,25 @@
 
 public class Policy
 {  
+   private static int instanceCount;
+   
+   /**
+      Constructor to increment that amount of instances of this class that are created.
+   */
+   public Policy()
+   {
+      instanceCount++;
+   }
+   
+   /**
+      Returns the amount of instances of the class.
+      @return instanceCount The number of instances of this class has been created
+   */
+   public int getInstanceCountPolicy()
+   {
+      return instanceCount;
+   }
+   
    /**
       This method calculates and returns the policy holder's BMI.
       @return BMI Policy holder's BMI.
