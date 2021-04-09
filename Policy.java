@@ -5,7 +5,6 @@
 
 public class Policy
 {  
-   
    /**
       This method calculates and returns the policy holder's BMI.
       @return BMI Policy holder's BMI.
@@ -50,5 +49,16 @@ public class Policy
            
       return price;   
    } 
+   
+   /**
+      This method converts the returning code to a String.
+      @return str Returning data in String.
+   */
+   public String toString()
+   {
+      String str = "Policyholder's BMI: " + calculateHolderBMI();
+                   "Policy Price:  " + calculatePolicyPrice();
+      return str;
+   }
 }
 

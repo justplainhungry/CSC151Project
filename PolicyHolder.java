@@ -180,5 +180,22 @@ public class PolicyHolder
    {
       return weightLbs;
    }
+   
+   /**
+      Converts to string.
+      @return str Data in String.
+   */
+   public String toString()
+   {
+      String str = "Policy Number: " + policyNumber +
+                   "Provider Name: " + providerName +
+                   "Policyholder's First Name: " + holderFirstName +
+                   "Policyholder's Last Name: " + holderLastName +
+                   "Policyholder's Age: " + age +
+                   "Policyholder's Smoking Status: " + smokerStr +
+                   "Policyholder's Height: " + heightInch +
+                   "Policyholder's Weight: " + weightLbs +
+      return str;      
+   }
 
 }
