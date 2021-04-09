@@ -15,7 +15,7 @@ public class PolicyHolder
             
 
    // Set up no-arg constructor.
-   public Policy()
+   public PolicyHolder()
    {
       policyNumber = "";
       providerName = "";
@@ -29,7 +29,7 @@ public class PolicyHolder
    }
    
    // Set up constructor. 
-   public Policy(String pn, String provN, String hfn, String hln, String smk, double a, double hi, double wl)
+   public PolicyHolder(String pn, String provN, String hfn, String hln, String smk, double a, double hi, double wl)
    {
       policyNumber = pn;
       providerName = provN;
@@ -41,148 +41,71 @@ public class PolicyHolder
       weightLbs = wl;
    }
       
-   // Create setters.
    
    /**
-      This method sets the holder's policy number.
+      Set method to hold all variables
+      @param pN Holder's policy number
+      @param provN Provider Name
+      @param hfn Holder's first name
+      @param a Holder's age
+      @param sm Holder's Smoking status
+      @param hi Holder's height in inches
+      @param wl Holder's weight in pounds
    */
-   public void setPolicyNumber(String pn)
+   public void setPolicyHolder(String pn, String provN, String hfn, String hln, double a, String sm, double hi, double wl)
    {
       policyNumber = pn;
-   }
-   
-   /**
-      This method sets the holder's provider name.
-   */
-   public void setProviderName(String provN)
-   {
       providerName = provN;
-   }
-   
-   /**
-      This method sets the policy holder's first name.
-   */
-   public void setHolderFirstName(String hfn)
-   {
       holderFirstName = hfn;
-   }
-   
-   /**
-      This method sets the policy holder's last name.
-   */
-   public void setHolderLastName(String hln)
-   {
       holderLastName = hln;
-   }
-   
-   /**
-      Thie method sets the policy holder's age.   
-   */
-   public void setAge(double a)
-   {
       age = a;
-   }
-   
-   /**
-      This method sets the policy holder's smoking status.
-   */
-   public void setSmokeStr(String sm)
-   {
       smokerStr = sm;
-   }
-   
-   /**
-      This method sets the policy holder's height.
-   */
-   public void setHeightInch(double hi)
-   {
       heightInch = hi;
-   }
-   
-   /**
-      This method sets the policy holder's weight.
-   */
-   public void setWeightLbs(double wl)
-   {
       weightLbs = wl;
-   }
-   
-   // Create getters.
+   }   
    
    /**
-      This method gets the policy holder's policy number.
-      @return policyNumber Holds the policy number.
+      Copy Constructor.
+      @param obj Copy Oobject
    */
-   public String getPolicyNumber()
+   public PolicyHolder(PolicyHolder obj)
    {
-      return policyNumber;
+      policyNumber = obj.policyNumber;
+      providerName = obj.providerName;
+      holderFirstName = obj.holderFirstName;
+      holderLastName = obj.holderLastName;
+      age = obj.age;
+      smokerStr = obj.smokerStr;
+      heightInch = obj.heightInch;
+      weightLbs = obj.weightLbs;
    }
    
-   /**
-      This method gets the insurance provider's name
-      @return providerName Holds the provider's name.
-   */
-   public String getProviderName()
+   //return weight **probably wrong to put a return type, possibly need another way to return this data
+   public double getWeight()
    {
-      return providerName;
+      return weightLbs;
    }
    
-   /**
-      This method gets the policy holder's first name.
-      @return holderFirstName Holds the holder's first name.
-   */
-   public String getHolderFirstName()
+   //return height ******^^^^^^^^^^^^^^^^
+   public double getHeight()
    {
-      return holderFirstName;
+      return heightInch;
    }
    
-   /**
-      This method gets the policy holder's last name.
-      @return holderLastName Policy holder's lastName.
-   */
-   public String getHolderLastName()
-   {
-      return holderLastName;
-   }
-   
-   /**
-      This method gets the policy holder's age.
-      @return age Policy holder's age.
-   */
+   //return age^^^^^^^^^^^^^^^^^^^^^^^
    public double getAge()
    {
       return age;
    }
    
-   /**
-      This method returns the smoking status as a string.
-      @return smokerStr Policy holder's smoking status.
-   */
-   public String getSmokeStr()
+   //return smoking status
+   public String getSmokeStat()
    {
       return smokerStr;
    }
-   
+           
    /**
-      This method returns the policy holder's height in inches.
-      @return heightInch Policy holder's height in inches.
-   */
-   public double getHeightInch()
-   {
-      return heightInch;
-   }
-   
-   /**
-      This method gets the policy holder's weight in pounds.
-      @return weightLbs Policy holder's weight in pounds.
-   */
-   public double getWeightLbs()
-   {
-      return weightLbs;
-   }
-   
-   /**
-      Converts to string.
+      Converts all data to string.
       @return str Data in String.
    */
    public String toString()
@@ -194,7 +117,7 @@ public class PolicyHolder
                    "Policyholder's Age: " + age +
                    "Policyholder's Smoking Status: " + smokerStr +
                    "Policyholder's Height: " + heightInch +
-                   "Policyholder's Weight: " + weightLbs +
+                   "Policyholder's Weight: " + weightLbs;
       return str;      
    }
 
